@@ -241,313 +241,293 @@ const teamMembers: TeamMember[] = [
     avatar: '👩‍🎨'
   }
 ]
-  },
-  { 
-    id: 2, 
-    title: '喜欢', 
-    desc: '浏览你喜欢的内容', 
-    icon: IconHeart,
-    color: '#ff6b6b'
-  },
-  { 
-    id: 3, 
-    title: '设置', 
-    desc: '管理账户与偏好', 
-    icon: IconCog,
-    color: '#4ecdc4'
-  },
-  { 
-    id: 4, 
-    title: '帮助中心', 
-    desc: '常见问题与客服', 
-    icon: IconQuestion,
-    color: '#45b7d1'
-  },
-  { 
-    id: 5, 
-    title: '隐私安全', 
-    desc: '查看隐私设置与安全', 
-    icon: IconShield,
-    color: '#96ceb4'
-  }
-]
 
-const quickActions: QuickAction[] = [
-  { id: 1, icon: '📱', text: '下载App', action: 'download' },
-  { id: 2, icon: '🔔', text: '通知设置', action: 'notifications' },
-  { id: 3, icon: '🌙', text: '深色模式', action: 'darkMode' },
-  { id: 4, icon: '🔒', text: '隐私设置', action: 'privacy' }
-]
 
-const handleCardClick = (item: CardItem) => {
-  activeCard.value = item.id
-  console.log('点击卡片:', item.title)
-  
-  // 模拟点击效果，2秒后重置
-  setTimeout(() => {
-    activeCard.value = null
-  }, 200)
-  
-  // 可扩展：跳转或弹窗
-  // if (item.path) {
-  //   router.push(item.path)
-  // }
-}
 
-const handleActionClick = (action: QuickAction) => {
-  console.log('快速操作:', action.text)
-  // 根据action类型执行不同操作
-  switch (action.action) {
-    case 'download':
-      // 下载App逻辑
-      break
-    case 'notifications':
-      // 通知设置逻辑
-      break
-    case 'darkMode':
-      // 深色模式切换逻辑
-      break
-    case 'privacy':
-      // 隐私设置逻辑
-      break
-  }
-}
 </script>
 
 <style scoped>
 .more-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  display: flex;
-  flex-direction: column;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
 }
 
-/* 顶部标题 */
-.header {
+/* 品牌介绍头部 */
+.brand-header {
   position: relative;
-  padding: 60px 24px 40px;
+  padding: 80px 24px 60px;
   text-align: center;
   overflow: hidden;
 }
 
-.header-background {
+.brand-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 300px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
   z-index: 1;
 }
 
-.header-content {
+.brand-content {
   position: relative;
   z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.title {
-  font-size: 2.5rem;
+.brand-title {
+  font-size: 3rem;
   font-weight: 700;
   color: white;
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
 }
 
-.subtitle {
-  font-size: 1.1rem;
+.brand-subtitle {
+  font-size: 1.3rem;
   color: rgba(255, 255, 255, 0.9);
-  margin: 12px 0 0;
+  margin: 16px 0 0;
   font-weight: 300;
+  line-height: 1.5;
 }
 
-/* 卡片列表 */
-.card-list {
-  flex: 1;
-  padding: 0 20px 20px;
-  z-index: 2;
-  position: relative;
+/* 品牌故事 */
+.brand-story {
+  padding: 80px 24px;
+  background: white;
 }
 
-.card {
-  display: flex;
+.story-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.95);
+}
+
+.story-content {
+  padding-right: 40px;
+}
+
+.story-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 32px;
+  line-height: 1.2;
+}
+
+.story-text {
+  font-size: 1.1rem;
+  color: #475569;
+  margin: 0 0 24px;
+  line-height: 1.8;
+}
+
+.story-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-placeholder {
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.card-active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 16px;
-  color: white;
-  font-weight: bold;
+  font-size: 6rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.card-content {
-  flex: 1;
+/* 品牌价值 */
+.brand-values {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
-.card-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin: 0 0 4px;
+.values-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin: 0 0 60px;
 }
 
-.card-desc {
-  font-size: 0.9rem;
-  color: #718096;
-  margin: 0;
-  line-height: 1.4;
+.values-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
 }
 
-.card-arrow {
-  color: #a0aec0;
-  transition: transform 0.3s ease;
-}
-
-.card:hover .card-arrow {
-  transform: translateX(4px);
-  color: #667eea;
-}
-
-/* 用户信息卡片 */
-.user-section {
-  padding: 0 20px 20px;
-}
-
-.user-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.value-card {
+  background: white;
   border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  color: white;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  padding: 32px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.user-card:hover {
-  transform: translateY(-2px);
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-.user-avatar {
-  margin-right: 16px;
-}
-
-.avatar-placeholder {
+.value-icon {
   width: 60px;
   height: 60px;
+  margin-bottom: 20px;
+}
+
+.value-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 12px;
+}
+
+.value-desc {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* 团队介绍 */
+.team-section {
+  padding: 80px 24px;
+  background: white;
+}
+
+.team-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin: 0 0 60px;
+}
+
+.team-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.member-avatar {
+  margin-bottom: 20px;
+}
+
+.member-avatar .avatar-placeholder {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 3rem;
+  margin: 0 auto;
 }
 
-.user-info {
-  flex: 1;
-}
-
-.user-name {
-  font-size: 1.3rem;
+.member-name {
+  font-size: 1.4rem;
   font-weight: 600;
-  margin: 0 0 4px;
+  color: #1e293b;
+  margin: 0 0 8px;
 }
 
-.user-status {
-  font-size: 0.9rem;
-  opacity: 0.9;
-  margin: 0;
-}
-
-.user-badge {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-/* 快速操作 */
-.quick-actions {
-  padding: 0 20px 30px;
-}
-
-.section-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #2d3748;
+.member-role {
+  font-size: 1rem;
+  color: #3b82f6;
+  font-weight: 500;
   margin: 0 0 16px;
 }
 
-.actions-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+.member-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
 }
 
-.action-btn {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 16px;
+/* 联系信息 */
+.contact-section {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: white;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 60px;
+}
+
+.contact-info {
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.contact-item {
+  display: flex;
   align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
 }
 
-.action-btn:hover {
-  border-color: #667eea;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.action-icon {
+.contact-icon {
   font-size: 1.5rem;
-  margin-bottom: 8px;
 }
 
-.action-text {
-  font-size: 0.9rem;
+.contact-text {
+  font-size: 1.1rem;
   font-weight: 500;
-  color: #4a5568;
 }
 
 /* 底部信息 */
 .footer {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 30px 20px;
-  margin-top: auto;
+  background: #1e293b;
+  color: white;
+  padding: 40px 24px;
 }
 
 .footer-content {
@@ -557,89 +537,131 @@ const handleActionClick = (action: QuickAction) => {
 }
 
 .footer-text {
-  color: #718096;
-  margin: 0 0 12px;
+  color: #94a3b8;
+  margin: 0 0 16px;
   font-size: 0.9rem;
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
 .footer-link {
-  color: #667eea;
+  color: #cbd5e1;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #764ba2;
+  color: #3b82f6;
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
-  .header {
-    padding: 40px 20px 30px;
+@media (max-width: 1024px) {
+  .story-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
   
-  .title {
+  .story-content {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-header {
+    padding: 60px 20px 40px;
+  }
+  
+  .brand-title {
+    font-size: 2.5rem;
+  }
+  
+  .brand-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .brand-story,
+  .brand-values,
+  .team-section,
+  .contact-section {
+    padding: 60px 20px;
+  }
+  
+  .story-title,
+  .values-title,
+  .team-title,
+  .contact-title {
     font-size: 2rem;
   }
   
-  .card {
-    padding: 16px;
+  .image-placeholder {
+    width: 250px;
+    height: 250px;
+    font-size: 5rem;
   }
   
-  .card-icon {
-    width: 45px;
-    height: 45px;
-    margin-right: 12px;
-  }
-  
-  .user-card {
-    padding: 20px;
-  }
-  
-  .avatar-placeholder {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-  
-  .actions-grid {
+  .values-grid,
+  .team-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .value-card,
+  .team-card {
+    padding: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .header {
-    padding: 30px 16px 20px;
+  .brand-header {
+    padding: 40px 16px 30px;
   }
   
-  .title {
+  .brand-title {
+    font-size: 2rem;
+  }
+  
+  .brand-story,
+  .brand-values,
+  .team-section,
+  .contact-section {
+    padding: 40px 16px;
+  }
+  
+  .story-title,
+  .values-title,
+  .team-title,
+  .contact-title {
     font-size: 1.8rem;
+    margin-bottom: 40px;
   }
   
-  .card-list {
-    padding: 0 16px 16px;
+  .image-placeholder {
+    width: 200px;
+    height: 200px;
+    font-size: 4rem;
   }
   
-  .user-section,
-  .quick-actions {
-    padding: 0 16px 20px;
+  .contact-info {
+    gap: 16px;
+  }
+  
+  .contact-item {
+    padding: 16px;
   }
   
   .footer {
-    padding: 20px 16px;
+    padding: 30px 16px;
   }
   
   .footer-links {
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
   }
 }
 </style>
