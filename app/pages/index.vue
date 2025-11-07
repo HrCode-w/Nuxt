@@ -20,6 +20,9 @@
             <button class="btn-secondary" @click="scrollToFeatures">
               查看特色
             </button>
+            <button class="btn-debug" @click="debugFunction">
+              调试
+            </button>
           </div>
         </div>
         <div class="hero-visual">
@@ -44,26 +47,26 @@
           <p>探索我们提供的卓越功能</p>
           <div class="divider"></div>
         </div>
-        
+
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">⚡</div>
             <h3>高性能</h3>
             <p>优化的架构设计，确保系统运行流畅，响应迅速</p>
           </div>
-          
+
           <div class="feature-card">
             <div class="feature-icon">🔒</div>
             <h3>安全可靠</h3>
             <p>多层安全防护机制，保障您的数据安全与隐私</p>
           </div>
-          
+
           <div class="feature-card">
             <div class="feature-icon">🌐</div>
             <h3>跨平台</h3>
             <p>支持多种设备和平台，随时随地享受服务</p>
           </div>
-          
+
           <div class="feature-card">
             <div class="feature-icon">🔄</div>
             <h3>持续更新</h3>
@@ -133,11 +136,11 @@ definePageMeta({
 const navigateToAbout = () => {
   router.push('/about')
 }
-const navigateToProducts=()=>{
-    router.push('/products/1')
+const navigateToProducts = () => {
+  router.push('/products/1')
 }
-const navigateToMore=()=>{
-    router.push('/more')
+const navigateToMore = () => {
+  router.push('/more')
 }
 
 const scrollToFeatures = () => {
@@ -145,19 +148,28 @@ const scrollToFeatures = () => {
     featuresSection.value.scrollIntoView({ behavior: 'smooth' })
   }
 }
+const title = ref('Debug Page')
+// 调试函数
+const debugFunction = () => {
+  useHead({
+    title: title.value,
+      script: [ { innerHTML: 'console.log(\'Hello world\')' } ]
+
+  })
+}
 
 onMounted(() => {
   console.log('首页组件挂载完成')
-  
+
   // 数字动画效果
   const animateNumbers = () => {
     const counters = document.querySelectorAll('.stat-number')
-    
+
     counters.forEach(counter => {
       const target = parseInt(counter.getAttribute('data-count') || '0')
       const increment = target / 100
       let current = 0
-      
+
       const updateCounter = () => {
         if (current < target) {
           current += increment
@@ -166,11 +178,11 @@ onMounted(() => {
           setTimeout(updateCounter, 20)
         }
       }
-      
+
       updateCounter()
     })
   }
-  
+
   // 使用Intersection Observer来触发数字动画
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -180,7 +192,7 @@ onMounted(() => {
       }
     })
   })
-  
+
   const statsSection = document.querySelector('.stats-section')
   if (statsSection) {
     observer.observe(statsSection)
@@ -192,6 +204,7 @@ onMounted(() => {
 .home-container {
   min-height: 100vh;
 }
+
 /* 英雄区域样式 */
 .hero-section {
   min-height: 100vh;
@@ -248,7 +261,8 @@ onMounted(() => {
   flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 12px 30px;
   border: none;
   border-radius: 50px;
@@ -280,6 +294,25 @@ onMounted(() => {
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+}
+
+.btn-debug {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+}
+
+.btn-debug:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary.large {
@@ -334,8 +367,15 @@ onMounted(() => {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 /* 滚动指示器 */
@@ -361,9 +401,22 @@ onMounted(() => {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-  40% { transform: translateY(-10px) translateX(-50%); }
-  60% { transform: translateY(-5px) translateX(-50%); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
 }
 
 /* 特色区域样式 */
@@ -511,42 +564,42 @@ onMounted(() => {
     gap: 40px;
     text-align: center;
   }
-  
+
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
+
   .floating-cards {
     width: 250px;
     height: 250px;
   }
-  
+
   .card {
     width: 80px;
     height: 80px;
     font-size: 2rem;
   }
-  
+
   .section-header h2 {
     font-size: 2.2rem;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .stat-number {
     font-size: 2.8rem;
   }
@@ -556,20 +609,21 @@ onMounted(() => {
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .hero-actions {
     flex-direction: column;
     align-items: center;
   }
-  
-  .btn-primary, .btn-secondary {
+
+  .btn-primary,
+  .btn-secondary {
     width: 200px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .cta-content h2 {
     font-size: 2rem;
   }
