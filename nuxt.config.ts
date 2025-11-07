@@ -1,5 +1,34 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'Nuxt 4 项目',
+      htmlAttrs: {
+        lang: 'zh-CN',
+      },
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      meta: [
+        { name: 'description', content: 'dom01 是一个基于 Nuxt 3 的项目' },
+      ],
+      link: [
+
+        {rel:'icon',type:'image/x-icon',href:'/favicon.ico'},
+        { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0' },
+      ],
+    },
+  },
+  hooks: {
+    // 当 Nuxt 关闭时触发
+   "close": () => {
+    // 
+    console.log('Nuxt 关闭')
+   }, 
+   // 当 Nuxt 准备就绪时触发
+   'ready': () => {
+    console.warn('Nuxt 准备就绪')
+   },
+  },
   compatibilityDate: '2025-07-15',// 2025-07-15 之前的版本不支持 Nuxt 3.11 及以上版本
   devtools: { enabled: true },// 开启 devtools 调试工具
   $production: {

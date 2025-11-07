@@ -103,7 +103,7 @@
         <div class="cta-content">
           <h2>准备好开始了吗？</h2>
           <p>立即加入我们，体验卓越的服务</p>
-          <button class="btn-primary large" @click="navigateToAbout">
+          <button class="btn-primary large" @click="navigateToProducts">
             立即开始
           </button>
         </div>
@@ -127,10 +127,14 @@ const featuresSection = ref<HTMLElement>()
 definePageMeta({
   name: 'IndexPage',
   layout: 'default',
+  keepalive: true,
 })
 
 const navigateToAbout = () => {
   router.push('/about')
+}
+const navigateToProducts=()=>{
+    router.push('/products/1')
 }
 const navigateToMore=()=>{
     router.push('/more')
@@ -188,7 +192,6 @@ onMounted(() => {
 .home-container {
   min-height: 100vh;
 }
-
 /* 英雄区域样式 */
 .hero-section {
   min-height: 100vh;
