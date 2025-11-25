@@ -88,6 +88,7 @@
   </div>
 </template>
 <script lang="ts" setup >
+
 definePageMeta({
   name: 'AboutPage',
   layout: 'default',
@@ -96,7 +97,8 @@ definePageMeta({
 </script>
 <style scoped>
 .about-container {
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: scroll;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 

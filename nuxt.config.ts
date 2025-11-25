@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   hooks: {
     // 当 Nuxt 关闭时触发
     "close": () => {
@@ -30,29 +31,39 @@ export default defineNuxtConfig({
       console.warn('Nuxt 准备就绪')
     },
   },
-  compatibilityDate: '2025-07-15',// 2025-07-15 之前的版本不支持 Nuxt 3.11 及以上版本
-  devtools: { enabled: true },// 开启 devtools 调试工具
+
+  // 2025-07-15 之前的版本不支持 Nuxt 3.11 及以上版本
+  compatibilityDate: '2025-07-15',
+
+  // 开启 devtools 调试工具
+  devtools: { enabled: true },
+
+  // 生产环境配置
   $production: {
     devtools: { enabled: false },
     routeRules: {
       '/**': { isr: true, cors: true },// 开启全站 ISR 缓存 
     },
 
-  },// 生产环境配置
+  },
+
   $development: {
     // 开发环境配置
     devtools: { enabled: true },
 
   },
+
   $env: {
     stagine: {
       logLevel: 'info',
     },
   },
+
   vite: {
     // Vite 配置
 
   },
+
   runtimeConfig: {
     // 私有配置，只有服务器端可以访问
     apiSecret: '123',
@@ -61,5 +72,20 @@ export default defineNuxtConfig({
       apiBase: '/api',
       name: 'dom01',
     },
+  },
+
+  modules: ['@sentry/nuxt/module'],
+
+  sentry: {
+    sourceMapsUploadOptions: {
+      org: 'hr-ja',
+      project: 'javascript-nuxt',
+    },
+
+    autoInjectServerSentry: 'top-level-import',
+  },
+
+  sourcemap: {
+    client: 'hidden',
   },
 })

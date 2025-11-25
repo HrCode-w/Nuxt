@@ -20,9 +20,7 @@
             <button class="btn-secondary" @click="scrollToFeatures">
               查看特色
             </button>
-            <button class="btn-debug" @click="debugFunction">
-              调试
-            </button>
+            <button class="btn-debug" @click="debugFunction">调试</button>
           </div>
         </div>
         <div class="hero-visual">
@@ -115,89 +113,96 @@
 
     <!-- 警告信息 -->
     <div class="alert-container">
-      <Alert message="欢迎访问我们的网站！如有任何问题，请随时联系我们。" type="info" />
+      <Alert
+        message="欢迎访问我们的网站！如有任何问题，请随时联系我们。"
+        type="info"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
-const featuresSection = ref<HTMLElement>()
+const router = useRouter();
+const featuresSection = ref<HTMLElement>();
 
 definePageMeta({
-  name: 'IndexPage',
-  layout: 'default',
+  name: "IndexPage",
+  layout: "default",
   keepalive: true,
-})
+});
 
 const navigateToAbout = () => {
-  router.push('/about')
-}
+  router.push("/about");
+};
 const navigateToProducts = () => {
-  router.push('/products/1')
-}
+  router.push("/products/1");
+};
 const navigateToMore = () => {
-  router.push('/more')
-}
+  router.push("/more");
+};
 
 const scrollToFeatures = () => {
   if (featuresSection.value) {
-    featuresSection.value.scrollIntoView({ behavior: 'smooth' })
+    featuresSection.value.scrollIntoView({ behavior: "smooth" });
   }
-}
-const title = ref('Debug Page')
+};
+const title = ref("Debug Page");
 // 调试函数
 const debugFunction = () => {
   useHead({
     title: title.value,
-      script: [ { innerHTML: 'console.log(\'Hello world\')' } ]
+    script: [{ innerHTML: "console.log('Hello world')" }],
+  });
+  throw new Error("Nuxt Button Error");
+};
 
-  })
-}
+onMounted(async () => {
+  const data = await useFetch("/api/hello");
+  console.log("fetch data");
+  console.log(data);
 
-onMounted(() => {
-  console.log('首页组件挂载完成')
+  console.log("首页组件挂载完成");
 
   // 数字动画效果
   const animateNumbers = () => {
-    const counters = document.querySelectorAll('.stat-number')
+    const counters = document.querySelectorAll(".stat-number");
 
-    counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-count') || '0')
-      const increment = target / 100
-      let current = 0
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute("data-count") || "0");
+      const increment = target / 100;
+      let current = 0;
 
       const updateCounter = () => {
         if (current < target) {
-          current += increment
-          if (current > target) current = target
-          counter.textContent = Math.floor(current).toString()
-          setTimeout(updateCounter, 20)
+          current += increment;
+          if (current > target) current = target;
+          counter.textContent = Math.floor(current).toString();
+          setTimeout(updateCounter, 20);
         }
-      }
+      };
 
-      updateCounter()
-    })
-  }
+      updateCounter();
+    });
+  };
 
   // 使用Intersection Observer来触发数字动画
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        animateNumbers()
-        observer.unobserve(entry.target)
+        animateNumbers();
+        observer.unobserve(entry.target);
       }
-    })
-  })
+    });
+  });
 
-  const statsSection = document.querySelector('.stats-section')
+  const statsSection = document.querySelector(".stats-section");
   if (statsSection) {
-    observer.observe(statsSection)
+    observer.observe(statsSection);
   }
-})
+});
 </script>
 
 <style scoped>
@@ -209,7 +214,7 @@ onMounted(() => {
 .hero-section {
   min-height: 100vh;
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
-  background-image: url('/assets/1.jpg');
+  background-image: url("/assets/1.jpg");
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -367,7 +372,6 @@ onMounted(() => {
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -401,7 +405,6 @@ onMounted(() => {
 }
 
 @keyframes bounce {
-
   0%,
   20%,
   50%,
