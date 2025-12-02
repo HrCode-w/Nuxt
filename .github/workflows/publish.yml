@@ -14,13 +14,17 @@ jobs:
       - name: 迁出代码
         # 使用action库  actions/checkout获取源码
         uses: actions/checkout@master
+      - name: 安装npm版本
+        uses: actions/setup-npm@v1
+        with:
+          npm-version: 10.9.4
       # 安装Node10
       
       - name: 安装node.js
         # 使用action库  actions/setup-node安装node
         uses: actions/setup-node@v1
         with:
-          node-version: 22.0.0
+          node-version: 22.21.1
 
       # 安装依赖
       - name: 安装依赖
