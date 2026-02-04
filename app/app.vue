@@ -4,6 +4,7 @@
     <nuxt-layout>
       <NuxtPage />
     </nuxt-layout>
+    <Analytics />
   </div>
 </template>
 <script setup lang="ts">
